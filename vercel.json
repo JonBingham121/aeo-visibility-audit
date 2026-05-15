@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "aeo-visibility-audit",
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
