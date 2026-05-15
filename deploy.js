@@ -100,7 +100,7 @@ async function pushToGitHub() {
   }
 }
 
-async function deployToVercel() {
+async function deployToVercel(repoId) {
   console.log('Deploying to Vercel...');
   
   const result = await apiRequest({
@@ -116,6 +116,7 @@ async function deployToVercel() {
     gitSource: {
       type: 'github',
       repo: `${GITHUB_USERNAME}/${REPO_NAME}`,
+      repoId: repoId,
       ref: 'main'
     },
     projectSettings: {
@@ -141,7 +142,7 @@ async function main() {
     await pushToGitHub();
     console.log('');
     
-    const deployment = await deployToVercel();
+    const deployment = await deployToVercel(repo.id || 1239346637);
     console.log(`\n🌐 Deployment URL: https://${deployment.url || REPO_NAME + '.vercel.app'}`);
     console.log('✅ Deployment complete!');
     
